@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id('club_id');
             $table->string('club_name', 50);
             $table->string('location', 100);
-            $table->string('country', 50);
+            $table->string('country', 100);
         });
     }
 
