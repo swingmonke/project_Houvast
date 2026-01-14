@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->double('weight');
             $table->date('date_of_birth');
             $table->string('profile_picture', 255)->nullable();
+            $table->boolean('is_present')->default(false);
+            $table->boolean('is_weighed')->default(false);
 
             $table->unsignedBigInteger('club_id');
             $table->foreign('club_id')
