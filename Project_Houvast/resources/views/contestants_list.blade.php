@@ -27,4 +27,13 @@
             </div>
         </div>
     </div>
+    <div>
+        @foreach ($contestants as $contestant)
+            <div class="p-4 m-2 border rounded-md border-gray-300">
+                <h3 class="text-lg font-semibold">{{ $contestant->name }}</h3>
+                <p class="text-gray-600">Age: {{ $contestant->age }}</p>
+                <p class="text-gray-600">Club: {{ $contestant->club }}</p>
+            </div>
+        @endforeach
+    </div>
 </x-layouts.app>
