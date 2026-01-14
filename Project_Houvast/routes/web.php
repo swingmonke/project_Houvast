@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\ContestansController;
+use App\Http\Controllers\clubs;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +19,16 @@ Route::view('Contestants_list', 'Contestants_list')
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::get('clubs', [clubs::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('clubs');
+
+Route::delete('clubs/{id}', [clubs::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('clubs.destroy');
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
