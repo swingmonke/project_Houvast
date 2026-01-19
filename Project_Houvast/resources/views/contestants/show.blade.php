@@ -6,6 +6,19 @@
             <div class="mb-4 p-3 bg-green-50 border border-green-200 text-green-800 rounded">{{ session('success') }}</div>
         @endif
 
+        @if(session('weight_warning'))
+            <div class="mb-4 p-3 bg-yellow-50 border border-yellow-200 text-yellow-800 rounded">
+                <p>{{ session('weight_warning') }}</p>
+                <form method="POST" action="{{ route('Contestants_update', $contestant->contestant_id) }}" id="confirm-weight-form" class="mt-3">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="weight" value="{{ old('weight') }}" />
+                    <input type="hidden" name="confirm_weight" value="1" />
+                    <button type="submit" class="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700">Confirm and Save</button>
+                </form>
+            </div>
+        @endif
+
         @if($errors->any())
             <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded">
                 <ul class="list-disc pl-5">
@@ -44,7 +57,7 @@
                 <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="p-4 border rounded-md">
                         <p class="text-sm text-gray-500">Given weight</p>
-                        <p class="font-medium">{{ $contestant->weight ?? '-' }}</p>
+                        <p class="font-medium">{{ $contestant->registered_weight ?? $contestant->weight ?? '-' }}</p>
                     </div>
 
                     <div class="p-4 border rounded-md">
