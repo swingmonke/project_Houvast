@@ -16,8 +16,8 @@
                 <flux:navlist.group :heading="__('')" class="grid">
                     <flux:navlist.item icon="users" :href="route('Contestants_list')" :current="request()->routeIs('contestants')" wire:navigate>{{ __('Contestans') }}</flux:navlist.item>
                     <flux:navlist.item icon="table-cells" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Brackets') }}</flux:navlist.item>
-                    <flux:navlist.item icon="squares-2x2" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Poules') }}</flux:navlist.item>
-                    <flux:navlist.item icon="user-group" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Clubs') }}</flux:navlist.item>
+                    <flux:navlist.item icon="squares-2x2" :href="route('poule')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Poules') }}</flux:navlist.item>
+                    <flux:navlist.item icon="user-group" :href="route('clubs')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Clubs') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
