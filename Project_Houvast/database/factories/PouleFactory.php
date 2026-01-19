@@ -15,7 +15,7 @@ class PouleFactory extends Factory
             'poule_name'  => 'Poule ' . $this->faker->randomLetter,
             'weight_class'=> $this->faker->randomFloat(1, 40, 120),
             'location'    => $this->faker->bothify('A#'),
-            'poule_size'  => $this->faker->numberBetween(4, 16),
+            'poule_size'  => $this->faker->numberBetween(3, 6),
             'age'         => $this->faker->numberBetween(10, 40),
         ];
     }

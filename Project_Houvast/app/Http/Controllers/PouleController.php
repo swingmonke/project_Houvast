@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Poule;
 
-class poule extends Controller
+class PouleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class poule extends Controller
             $q->where('poule_name', 'like', '%' . $query . '%')
               ->orWhere('location', 'like', '%' . $query . '%');
         })->get();
-        return view('poule.index', compact('poules', 'query'));
+        return view('poules.index', compact('poules', 'query'));
     }
 
     /**
@@ -39,10 +39,15 @@ class poule extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        
-    }
+public function show(\App\Models\Poule $poule)
+{
+    // $contestants = $poule->contestants()->orderBy('name')->get();
+
+    // return view('poules.show', compact('poule', 'contestants'));
+    return view('poules.pouleView', compact('poule'));
+
+
+}
 
     /**
      * Show the form for editing the specified resource.

@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
 
         TournamentYear::factory(1)->create();
 
-        Poule::factory(4)->create();
+        Poule::factory(12)->create();
         Bracket::factory(4)->create();
 
         Contestant::factory(20)->create();
 
         User::firstOrCreate(
-            ['email' => 'test@example.com'],
+            ['email' => 'maxdev062007@outlook.com'],
             [
                 'name' => 'Test User',
                 'password' => 'password',

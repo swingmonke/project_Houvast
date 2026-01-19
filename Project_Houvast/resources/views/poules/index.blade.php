@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('poule')">
+<x-layouts.app :title="__('Contestants_list')">
     <div class="container-fluid">
         @if(session('success'))
             <div class="alert alert-success">
@@ -65,8 +65,8 @@
                 {{-- Right buttons --}}
                 <div class="w-40 flex flex-col justify-between">
                     <a
-                        {{-- href="{{ route('poules.show', $poule->poule_id) }}" --}}
-                        href="{{ route("dashboard") }}"
+                        href="{{ route('poules.show', $poule->poule_id) }}"
+
                         class="block w-full text-center bg-gray-300 border border-gray-400 py-3"
                     >
                         Open poule
