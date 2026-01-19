@@ -18,6 +18,7 @@ class Contestant extends Model
         'last_name',
         'infix',
         'weight',
+        'registered_weight',
         'date_of_birth',
         'profile_picture',
         'club_id',

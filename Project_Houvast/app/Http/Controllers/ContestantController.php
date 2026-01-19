@@ -87,10 +87,33 @@ class ContestantController extends Controller
     {
         $validated = $request->validate([
             'weight' => ['nullable', 'numeric'],
+            'confirm_weight' => ['nullable', 'boolean'],
         ]);
 
         if (array_key_exists('weight', $validated) && $validated['weight'] !== null) {
-            $contestant->weight = $validated['weight'];
+            $newWeight = $validated['weight'];
+            
+            // Get the reference weight (registered_weight if available, otherwise current weight)
+            $referenceWeight = $contestant->registered_weight ?? $contestant->weight;
+            
+            // Check if the new weight differs by more than 10% from the reference weight
+            $weightDifference = abs($newWeight - $referenceWeight);
+            $percentageDifference = ($weightDifference / $referenceWeight) * 100;
+            
+            // If difference is more than 10% and not confirmed, return with warning
+            $isConfirmed = isset($validated['confirm_weight']) && $validated['confirm_weight'];
+            if ($percentageDifference > 10 && $referenceWeight > 0 && !$isConfirmed) {
+                return redirect()->back()
+                    ->with('weight_warning', "Warning: The entered weight ({$newWeight} kg) differs by " . round($percentageDifference, 1) . "% from the registered weight ({$referenceWeight} kg). Please confirm this is correct.")
+                    ->with('weight_warning_data', [
+                        'new_weight' => $newWeight,
+                        'reference_weight' => $referenceWeight,
+                        'percentage_difference' => $percentageDifference,
+                    ])
+                    ->withInput();
+            }
+            
+            $contestant->weight = $newWeight;
             $contestant->is_weighed = true;
         }
 
